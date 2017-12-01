@@ -90,6 +90,56 @@
 .my-info-window-slider .slick-active button {
 	background: #d7af54;
 }
+.map-dropdowns {
+	position: absolute;
+	top: 105px;
+	left: 10px;
+	color: #151515;
+	font-size: 14px;
+}
+.map-dropdown {
+	width: 100px;
+}
+.map-dropdown .selected-option {
+	background: #FFF url(../images/arrow-down-vinous.png) calc(100% - 5px) center no-repeat;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px 0 15px;
+	position: relative;
+	cursor: pointer;
+}
+.map-dropdown-list {
+	background: #FFF;
+	display: none;
+	position: absolute;
+	width: 100%;
+}
+.map-dropdown-list input[type="radio"] {
+	display: none;
+}
+.map-dropdown-list.opened {
+	display: block;
+}
+.map-dropdown-item label {
+	height: 25px;
+	line-height: 25px;
+	padding-left: 15px;
+	position: relative;
+	display: block;
+	cursor: pointer;
+}
+.map-dropdown-item label:hover::before {
+	content: "";
+	width: 3px;
+	height: 3px;
+	background: #8c1727;
+	position: absolute;
+	left: 5px;
+	top: 10px;
+}
+.map-dropdown-item label:hover {
+	text-decoration: underline;
+}
 /*REMOVING GOOGLE BRANDING*/
 a[href^="http://maps.google.com/maps"] {
 	display: none !important;

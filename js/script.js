@@ -79,7 +79,7 @@ $(document).ready(function () {
                 maxHeight: 555,
                 closeWhenOthersOpen: true,
                 edgeOffset: {
-                    top: window.matchMedia('(min-width: 992px)').matches ? 100 : 20,
+                    top: window.matchMedia('(min-width: 992px)').matches ? 100 : 35,
                     right: 20,
                     bottom: 20,
                     left: 20
@@ -104,6 +104,8 @@ $(document).ready(function () {
                     }
                 }
             });
+
+            object.marker.markerObject = marker;
 
             marker.addListener( 'mouseover', function () {
                 marker.setIcon(object.marker.hoverIcon);
@@ -176,7 +178,8 @@ $(document).ready(function () {
             marker: {
                 position: new google.maps.LatLng(50.2616112, 28.6370312),
                 icon: 'images/home-icon.png',
-                hoverIcon: 'images/counter-icon.png'
+                hoverIcon: 'images/counter-icon.png',
+                category: ['all', 'cheap']
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -321,7 +324,8 @@ $(document).ready(function () {
             marker: {
                 position: new google.maps.LatLng(50.4021368, 30.2525084),
                 icon: 'images/home-icon.png',
-                hoverIcon: 'images/counter-icon.png'
+                hoverIcon: 'images/counter-icon.png',
+                category: ['all', 'cheap']
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -466,7 +470,8 @@ $(document).ready(function () {
             marker: {
                 position: new google.maps.LatLng(55.7498598, 37.3523163),
                 icon: 'images/home-icon.png',
-                hoverIcon: 'images/counter-icon.png'
+                hoverIcon: 'images/counter-icon.png',
+                category: ['all', 'expensive']
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -609,4 +614,75 @@ $(document).ready(function () {
         var map = Map(mapOptions, mapObjects);
         map.init();
     }
+
+    function filterMarkers (category) {
+        for ( i = 0; i < mapObjects.length; i++ ) {
+            var marker = mapObjects[i].marker;
+
+            
+            if ( marker.category.indexOf(category) != -1 ) {
+                marker.markerObject.setVisible(true);
+            }
+            else {
+             marker.markerObject.setVisible(false);
+         }
+     }
+ }
+
+
+ function MapDropdown(container) {
+    var selectedOption = container.find('.selected-option'),
+    options = container.find('.map-dropdown-list');
+
+    var init = function() {
+
+        if( container.find('input[type=radio]:checked').length ){
+            setSelectedOption( options.find('label').index( container.find('input[type=radio]:checked').parent() ) );
+        }
+        else {
+            container.find('input[type=radio]:first').prop('checked', true);
+            setSelectedOption(0);
+        }
+
+        filterMarkers( container.find('input[type=radio]:checked').val() );
+
+        selectedOption.click( function () {
+            if ( options.is('.opened') ) {
+                closeOptions();
+            }
+            else {
+                openOptions();
+            }
+        } );
+
+        options.on('click', 'input', optionsClickHndlr );
+    };
+
+    function optionsClickHndlr(e) {
+        var label = $(e.target).parent(),
+        index = options.find('label').index(label);
+
+        setSelectedOption(index);
+        filterMarkers( $(this).val() );
+        closeOptions();
+    }
+
+    function openOptions() {
+        options.addClass('opened');
+    }
+
+    function closeOptions() {
+        options.removeClass('opened');
+    }
+
+    function setSelectedOption(index) {
+        selectedOption.text( options.find('label').eq(index).text() );
+    }
+
+    return {
+        init: init
+    };
+}
+
+MapDropdown($('.map-dropdown')).init();
 });
