@@ -1,3 +1,7 @@
+#map {
+	width: 100vw;
+	height: calc(100vh - 100px);
+}
 .my-info-window {
 	background: #FFF
 }
@@ -103,6 +107,9 @@ a[href^="https://maps.google.com/maps"] {
 }
 /*REMOVING GOOGLE BRANDING*/
 @media only screen and (min-width: 992px) {
+	#map {
+		height: 100vh;
+	}
 	.my-info-window-slider .slick-dots {
 		right: 70px;
 	}
