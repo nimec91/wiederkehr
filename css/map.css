@@ -1,0 +1,109 @@
+.my-info-window {
+	background: #FFF
+}
+.my-info-window-header {
+	padding: 10px 110px 10px 10px;
+	background: #a5843c;
+	color: #FFF;
+	font: 22px "Roboto Black";
+	text-transform: uppercase;
+}
+.my-info-slide-item-img {
+	float: left;
+}
+.my-info-slide-text {
+	float: left;
+	width: calc(100% - 135px);
+}
+.my-info-slide-text {
+	padding: 15px 15px 5px 15px;
+	font: 14px/18px "Roboto Regular";
+	color: #575757;
+}
+.my-info-slide-item-title {
+	color: #171717;
+	font-size: 17px;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+.my-info-slide-item {
+	float: left;
+	width: 100%;
+	background: #FFF;
+}
+.my-info-slide-item:nth-child(even) {
+	background: #ececec;
+}
+.my-info-slide-text .my-info-slide-item-link {
+	padding-left: 10px;
+	margin-top: 4px;
+	float: right;
+	text-decoration: underline;
+	color: #454545;
+	background: url(../images/arrow-next-vinous.png) left center no-repeat;
+}
+.my-info-slide-text .my-info-slide-item-link:hover {
+	text-decoration: none;
+}    
+.my-info-window-slider .slick-arrow {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: -50px;
+	font-size: 0;
+	cursor: pointer;
+}
+.my-info-window-slider .slick-prev {
+	right: 51px;
+	background: rgba(0, 0, 0, .5) url(../images/arrow-previous.png) center center no-repeat;
+}
+.my-info-window-slider .slick-next {
+	right: 0;
+	background: rgba(0, 0, 0, .5) url(../images/arrow-next.png) center center no-repeat;
+}
+.my-info-window-slider .slick-disabled {
+	opacity: .75;
+}
+.my-info-window-slider .slick-dots {
+	position: absolute;
+	right: 35px;
+	top: -30px;
+	text-align: center;
+	font-size: 0;
+}  
+.my-info-window-slider .slick-dots li {
+	display: inline-block;
+	margin-right: 5px;
+}
+.my-info-window-slider .slick-dots button {
+	width: 10px;
+	height: 10px;
+	background: #8b6b26;
+	border-radius: 50%;
+	font-size: inherit;
+	cursor: pointer;
+}
+.my-info-window-slider .slick-active button {
+	background: #d7af54;
+}
+/*REMOVING GOOGLE BRANDING*/
+a[href^="http://maps.google.com/maps"] {
+	display: none !important;
+}
+a[href^="https://maps.google.com/maps"] {
+	display: none !important;
+}
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+	display: none;
+}
+.gmnoprint div {
+	background: none;
+}
+/*REMOVING GOOGLE BRANDING*/
+@media only screen and (min-width: 992px) {
+	.my-info-window-slider .slick-dots {
+		right: 70px;
+	}
+}

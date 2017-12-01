@@ -10,23 +10,29 @@ body {
 .container {
 	padding: 0 15px;
 }
-.top-header {
+.header-wrapper {
 	background: url(../images/header-backgrund.jpg) center center no-repeat;
 	background-size: cover;
-	padding: 15px 10px 10px;
+}
+.top-header {
+	padding: 30px 15px 0;
 	text-align: center;
 	position: relative;
 	z-index: 1;
+	height: 100px;
+}
+.map-page .top-header {
+	background: #000;
 }
 .top-header::before {
 	content: "";
-	background: -webkit-gradient( linear, left top, left bottom, from(rgba(0,0,0,0.5)), to(rgba(255,255,255,0)) );
-	background: -webkit-linear-gradient( top, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 100% );
-	background: -o-linear-gradient( top, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 100% );
-	background: linear-gradient( to bottom, rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 100%);
+	background: -webkit-gradient( linear, left top, left bottom, from(rgba(0,0,0,0.9)), to(rgba(255,255,255,0)) );
+	background: -webkit-linear-gradient( top, rgba(0,0,0,0.9) 0%, rgba(255,255,255,0) 100% );
+	background: -o-linear-gradient( top, rgba(0,0,0,0.9) 0%, rgba(255,255,255,0) 100% );
+	background: linear-gradient( to bottom, rgba(0,0,0,0.9) 0%, rgba(255,255,255,0) 100%);
 	position: absolute;
 	width: 100%;
-	height: 75%;
+	height: 125%;
 	left: 0;
 	top: 0;
 	z-index: -1;
@@ -246,7 +252,6 @@ main {
 }
 .suggestions-item {
 	margin-bottom: 25px;
-
 }
 .suggestions-item:last-child {
 	margin-bottom: 0;
@@ -263,6 +268,10 @@ main {
 	font-size: 16px;
 	color: #464646;
 }
+#map {
+	width: 100vw;
+	height: calc(100vh - 100px);
+}
 @media only screen and (min-width: 992px) {
 	.no-scroll {
         position: static;
@@ -274,8 +283,18 @@ main {
 		padding: 0;
 		margin: 0 auto;
 	}
+	.header-wrapper {
+		height: 250px;
+	}
 	.top-header {
-		padding: 40px 15px 160px;
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 0;
+		height: auto;
+	}
+	.map-page .top-header {
+		background: none;
 	}
 	.top-menu-open {
 		display: none;
@@ -333,6 +352,9 @@ main {
 	}
 	.suggestions {
 		width: calc(100% - 400px - 38.75%);
+	}
+	#map {
+		height: 100vh;
 	}
 }
 @media only screen and (min-width: 1200px) {
