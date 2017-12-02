@@ -45,18 +45,32 @@
             </div>
         </header>
     	<div id="map"></div>
-        <div class="map-dropdowns">
+        <div class="map-dropdowns clearfix">
             <div class="map-dropdown">
                 <div class="selected-option"></div>
                 <ul class="map-dropdown-list">
                     <li class="map-dropdown-item">
-                        <label><input type="radio" name="price" value="all" >All</label>
+                        <label><input type="radio" name="price" value="all-price" checked="checked">All</label>
                     </li>
                     <li class="map-dropdown-item">
                         <label><input type="radio" name="price" value="expensive">Expensive</label>
                     </li>
                     <li class="map-dropdown-item">
                         <label><input type="radio" name="price" value="cheap">Cheap</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="map-dropdown">
+                <div class="selected-option"></div>
+                <ul class="map-dropdown-list">
+                    <li class="map-dropdown-item">
+                        <label><input type="radio" name="country" value="all-country" checked="checked">All</label>
+                    </li>
+                    <li class="map-dropdown-item">
+                        <label><input type="radio" name="country" value="ukraine">Ukraine</label>
+                    </li>
+                    <li class="map-dropdown-item">
+                        <label><input type="radio" name="country" value="russia">Russia</label>
                     </li>
                 </ul>
             </div>

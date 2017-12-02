@@ -172,6 +172,10 @@ $(document).ready(function () {
                 ]
             }
             ]
+        },
+        mapFilters = {
+            price: '',
+            country: ''
         };
 
         mapObjects[0] = {
@@ -179,7 +183,10 @@ $(document).ready(function () {
                 position: new google.maps.LatLng(50.2616112, 28.6370312),
                 icon: 'images/home-icon.png',
                 hoverIcon: 'images/counter-icon.png',
-                category: ['all', 'cheap']
+                category: {
+                    price: ['all-price', 'expensive'],
+                    country: ['all-country', 'ukraine']
+                }
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -325,7 +332,10 @@ $(document).ready(function () {
                 position: new google.maps.LatLng(50.4021368, 30.2525084),
                 icon: 'images/home-icon.png',
                 hoverIcon: 'images/counter-icon.png',
-                category: ['all', 'cheap']
+                category: {
+                    price: ['all-price', 'cheap'],
+                    country: ['all-country', 'ukraine']
+                }
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -471,7 +481,10 @@ $(document).ready(function () {
                 position: new google.maps.LatLng(55.7498598, 37.3523163),
                 icon: 'images/home-icon.png',
                 hoverIcon: 'images/counter-icon.png',
-                category: ['all', 'expensive']
+                category: {
+                    price: ['all-price', 'expensive'],
+                    country: ['all-country', 'russia']
+                }
             },
             window: {
                 content: '<div class="my-info-window">' +
@@ -615,36 +628,50 @@ $(document).ready(function () {
         map.init();
     }
 
-    function filterMarkers (category) {
-        for ( i = 0; i < mapObjects.length; i++ ) {
-            var marker = mapObjects[i].marker;
+    function filterMarkers () {
+        for (var i = 0; i < mapObjects.length; i++ ) {
+            var marker = mapObjects[i].marker,
+                flag = true;
 
-            
-            if ( marker.category.indexOf(category) != -1 ) {
+
+            for(var propertyName in mapFilters) {
+                if (flag) {
+                    if ( marker.category[propertyName].indexOf( mapFilters[propertyName] ) == -1) {
+                        flag = false;
+                    }
+                }    
+            }
+            if (flag) {
                 marker.markerObject.setVisible(true);
             }
             else {
-             marker.markerObject.setVisible(false);
+                marker.markerObject.setVisible(false);
+            }
          }
-     }
- }
+    }
 
 
  function MapDropdown(container) {
     var selectedOption = container.find('.selected-option'),
-    options = container.find('.map-dropdown-list');
+        options = container.find('.map-dropdown-list');
 
     var init = function() {
-
-        if( container.find('input[type=radio]:checked').length ){
-            setSelectedOption( options.find('label').index( container.find('input[type=radio]:checked').parent() ) );
+        var chekedInput = container.find('input[type=radio]:checked');
+        if( chekedInput.length ){
+            setSelectedOption( options.find('label').index( chekedInput.parent() ) );
         }
         else {
             container.find('input[type=radio]:first').prop('checked', true);
             setSelectedOption(0);
         }
 
-        filterMarkers( container.find('input[type=radio]:checked').val() );
+        var val = chekedInput.val(),
+            category = chekedInput.attr('name');
+        if ( mapFilters[category] != val ) {
+            mapFilters[category] = val;
+        }
+
+        filterMarkers();
 
         selectedOption.click( function () {
             if ( options.is('.opened') ) {
@@ -663,7 +690,14 @@ $(document).ready(function () {
         index = options.find('label').index(label);
 
         setSelectedOption(index);
-        filterMarkers( $(this).val() );
+
+        var val = $(this).val(),
+            category = $(this).attr('name');
+        if ( mapFilters[category] != val ) {
+            mapFilters[category] = val;
+        }
+
+        filterMarkers();
         closeOptions();
     }
 
@@ -683,6 +717,12 @@ $(document).ready(function () {
         init: init
     };
 }
+    var mapDropdowns = [];
+    $('.map-dropdown').each( function() {
+        mapDropdowns.push( MapDropdown( $(this) ) );
+    } );
 
-MapDropdown($('.map-dropdown')).init();
+    for (var i = 0; i < mapDropdowns.length; i++) {
+        mapDropdowns[i].init();
+    }
 });

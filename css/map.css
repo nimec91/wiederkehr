@@ -99,6 +99,12 @@
 }
 .map-dropdown {
 	width: 100px;
+	position: relative;
+	float: left;
+	margin-right: 15px;
+}
+.map-dropdown:last-child {
+	margin-right: 0;
 }
 .map-dropdown .selected-option {
 	background: #FFF url(../images/arrow-down-vinous.png) calc(100% - 5px) center no-repeat;
@@ -162,5 +168,9 @@ a[href^="https://maps.google.com/maps"] {
 	}
 	.my-info-window-slider .slick-dots {
 		right: 70px;
+	}
+	.map-dropdowns {
+    	top: 90px;
+    	left: 280px;
 	}
 }
