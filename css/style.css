@@ -240,10 +240,11 @@ body {
 }
 .contact-item-phone {
 	background: url(../images/phone-icon.svg) left center no-repeat;
+	background-size: 25px 30px;
 }
 .contact-item-mail {
 	background: url(../images/mail-icon.svg) left center no-repeat;
-	background-size: 25px;
+	background-size: 25px 25px;
 }
 .suggestion-list {
 	padding: 30px;
@@ -261,7 +262,7 @@ body {
 	color: #9f9f9f;
 	display: block;
 	background: url(../images/pdf-icon.svg) left center no-repeat;
-	background-size: 35px;
+	background-size: 35px 35px;
 	padding-left: 45px;
 }
 .suggestions-item-title {
@@ -428,6 +429,9 @@ body {
 		width: calc(100% - 400px - 38.75%);
 	}
 	.brands-page {
+		overflow: hidden; /*IE FIX*/
+	}
+	.brands-page .wrapper {
 		width: 100vw;
 		height: 100vh;
 	}

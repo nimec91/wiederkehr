@@ -1,5 +1,5 @@
 @font-face {
-	font-family: "RobotoRegular";
+	font-family: "Roboto Regular";
 	src: url("../fonts/RobotoRegular.eot");
 	src: url("../fonts/RobotoRegular.eot?#iefix")format("embedded-opentype"),
 	url("../fonts/RobotoRegular.woff") format("woff"),
@@ -8,7 +8,7 @@
 	font-weight: normal;
 }
 @font-face {
-	font-family: "RobotoBlack";
+	font-family: "Roboto Black";
 	src: url("../fonts/RobotoBlack.ttf") format("truetype");
 	font-style: normal;
 }

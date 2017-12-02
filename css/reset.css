@@ -37,3 +37,6 @@ input[type="submit"] {
     border: none;
     padding: 0;
 }
+main {
+    display: block;
+}
